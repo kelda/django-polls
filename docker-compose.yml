@@ -1,0 +1,22 @@
+version: '3'
+services:
+  web:
+    build: .
+    command:
+      - sh
+      - -c
+      - "python manage.py migrate ; python manage.py shell < init-db.py ; python manage.py runserver 0.0.0.0:8000"
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    volumes:
+      - ".:/code"
+  db:
+    image: "postgres:12"
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=polls
+      - POSTGRES_PASSWORD=polls
+      - POSTGRES_DB=polls
