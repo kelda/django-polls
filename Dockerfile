@@ -1,4 +1,5 @@
 FROM python:3
+RUN apt update && apt install -y netcat && rm -rf /var/lib/apt/lists/*
 ENV PYTHONUNBUFFERED 1
 RUN mkdir /code
 WORKDIR /code

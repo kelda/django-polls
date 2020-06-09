@@ -47,6 +47,7 @@ def vote(request, question_id):
             'error_message': "You didn't select a choice.",
         })
     else:
-        selected_choice.votes += 1
+        # Change the following line to make it so each vote only counts once.
+        selected_choice.votes += 2
         selected_choice.save()
         return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))
